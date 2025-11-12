@@ -11,6 +11,8 @@ This project connects a Unity car game with Arduino Uno to display speed on a 3-
 
 ## Hardware Setup
 
+![Circuit Diagram](Images/circuit-diagram.png)
+
 ### 1. Connect 5641AS 7-Segment Display (3 digits) to Arduino:
 
 **Segment Pins** (connect all 8 segments):
@@ -83,22 +85,3 @@ This project connects a Unity car game with Arduino Uno to display speed on a 3-
 - Pin 13 used for motor control (4th digit not connected)
 - Display uses SevSeg library with common cathode configuration
 - Ensure serial port permissions on Linux/Mac (`sudo usermod -a -G dialout $USER`)
-
-## MCP Usage
-
-This project supports the Model Context Protocol (MCP) for enhanced Unity development with AI assistants. MCP allows tools like GitHub Copilot to interact directly with Unity's editor and project structure.
-
-### Setup MCP Server
-
-1. Install the Unity MCP package:
-   - Follow instructions at [Unity MCP GitHub](https://github.com/CoplayDev/unity-mcp) to set up the MCP server on your machine.
-2. Configure VS Code:
-   - Ensure you have the MCP support enabled in your VS Code setup.
-   - Update the path in `.vscode/mcp.json` if your Unity MCP installation differs:
-     - Linux: `/home/YOUR_USERNAME/.local/share/UnityMCP/UnityMcpServer/src`
-     - Windows: `C:\\Users\\YOUR_USERNAME\\AppData\\Local\\UnityMCP\\UnityMcpServer\\src`
-   - Do not commit your personal paths to version control!
-
-3. Start the MCP server:
-   - Open Unity and ensure the project is loaded
-   - The MCP server will automatically connect when you use compatible AI tools
