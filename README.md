@@ -11,7 +11,7 @@ This project connects a Unity car game with Arduino Uno to display speed on a 3-
 
 ## Hardware Setup
 
-![Circuit Diagram](Images/circuit-diagram.png)
+![Circuit Diagram](Circuit/simdash.png)
 
 ### 1. Connect 5641AS 7-Segment Display (3 digits) to Arduino:
 
@@ -32,13 +32,10 @@ This project connects a Unity car game with Arduino Uno to display speed on a 3-
 - Digit 3 (rightmost) → Pin **12**
 - Digit 4 → **Not connected** (pin 13 is used for motor)
 
-**Power:**
-- VCC to 5V
-- GND to GND
-
 ### 2. Connect 5V Motor to Arduino:
 - Motor positive to digital pin **13** (PWM)
-- Motor negative to GND (via transistor if needed for higher current)
+- Motor negative to GND via transistor for proper current handling
+
 
 ### 3. Connect Arduino to computer via USB for serial communication.
 
@@ -80,7 +77,7 @@ This project connects a Unity car game with Arduino Uno to display speed on a 3-
 
 ## Notes
 
-- 3-digit display shows speed 0-999 (no decimal point)
+- 3-digit display shows speed 0-100
 - Motor PWM is mapped from speed (0-100 → 0-255 PWM)
 - Pin 13 used for motor control (4th digit not connected)
 - Display uses SevSeg library with common cathode configuration
