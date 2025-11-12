@@ -37,6 +37,9 @@ public class CarController : MonoBehaviour
 
         // Send speed to Arduino (assuming speed 0-100)
         int displaySpeed = Mathf.RoundToInt(currentSpeed / speed * 100);
-        SerialCommunicator.Instance.SendSpeed(displaySpeed);
+        if (SerialCommunicator.Instance != null)
+        {
+            SerialCommunicator.Instance.SendSpeed(displaySpeed);
+        }
     }
 }
