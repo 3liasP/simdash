@@ -5,6 +5,9 @@
       "args": [
         "run",
         "--directory",
+        // edit the path to match your local setup
+        // for linux:  "/home/YOUR_USERNAME/.local/share/UnityMCP/UnityMcpServer/src"
+        // for windows: "C:\\Users\\YOUR_USERNAME\\AppData\\Local\\UnityMCP\\UnityMcpServer\\src",
         "/home/elias/.local/share/UnityMCP/UnityMcpServer/src",
         "server.py"
       ]
