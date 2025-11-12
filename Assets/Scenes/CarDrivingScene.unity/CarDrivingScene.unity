@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aabe2967d3492f0ebaf5876c29332fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SerialCommunicator
-  portName: COM3
+  portName: /dev/ttyACM0
   baudRate: 9600
 --- !u!4 &1599750039
 Transform:
