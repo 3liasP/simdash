@@ -1,0 +1,13 @@
+{
+  "servers": {
+    "UnityMCP": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "/home/elias/.local/share/UnityMCP/UnityMcpServer/src",
+        "server.py"
+      ]
+    }
+  }
+}
