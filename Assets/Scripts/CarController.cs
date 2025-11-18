@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    public float speed = 10f;
-    public float reverseSpeed = 5f;
-    public float turnSpeed = 100f;
+    public float speed = 50f;
+    public float reverseSpeed = 10f;
+    public float turnSpeed = 250f;
 
     private float currentSpeed = 0f;
-    private float acceleration = 5f;
-    private float deceleration = 10f;
+    private float acceleration = 25f;
+    private float deceleration = 25f;
 
     void Update()
     {
