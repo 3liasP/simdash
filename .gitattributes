@@ -1,3 +1,6 @@
+# Set default line ending behavior to LF for all text files
+* text=auto eol=lf
+
 # 3D Models & Animations
 *.fbx filter=lfs diff=lfs merge=lfs -text
 *.blend filter=lfs diff=lfs merge=lfs -text
