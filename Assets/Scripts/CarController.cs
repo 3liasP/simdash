@@ -7,6 +7,7 @@ public class CarController : MonoBehaviour
     public float speed = 50f;
     public float reverseSpeed = 10f;
     public float turnSpeed = 250f;
+    public int displaySpeed;
 
     private float currentSpeed = 0f;
     private float acceleration = 25f;
@@ -52,7 +53,7 @@ public class CarController : MonoBehaviour
         transform.Rotate(Vector3.up, steer * turnSpeed * turnMultiplier * Time.deltaTime);
 
         // Send speed to Arduino (assuming speed 0-100)
-        int displaySpeed = Mathf.RoundToInt(Mathf.Abs(currentSpeed) / speed * 100);
+        displaySpeed = Mathf.RoundToInt(Mathf.Abs(currentSpeed) / speed * 100);
         if (SerialCommunicator.Instance != null)
         {
             SerialCommunicator.Instance.SendSpeed(displaySpeed);
