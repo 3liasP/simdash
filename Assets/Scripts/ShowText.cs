@@ -11,6 +11,12 @@ public class ShowText : MonoBehaviour
 
     public string textValue = "";
     public TMP_Text textElement;
+    
+    // Flashing parameters
+    public float flashSpeed = 2f;
+    private float flashTimer = 0f;
+    private bool isVisible = true;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,11 +30,22 @@ public class ShowText : MonoBehaviour
         carSpeed = car_script.displaySpeed;
         if(carSpeed > 50)
         {
-            textElement.text =  textValue;
+            // Flash the text
+            flashTimer += Time.deltaTime * flashSpeed;
+            if(flashTimer >= 1f)
+            {
+                flashTimer = 0f;
+                isVisible = !isVisible;
+                textElement.enabled = isVisible;
+            }
+            textElement.text = textValue;
         }
         else
         {
             textElement.text = "";
+            textElement.enabled = true;
+            flashTimer = 0f;
+            isVisible = true;
         }
     }
 }
