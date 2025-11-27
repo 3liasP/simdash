@@ -52,11 +52,22 @@ public class CarController : MonoBehaviour
         float turnMultiplier = Mathf.Abs(currentSpeed) / speed;
         transform.Rotate(Vector3.up, steer * turnSpeed * turnMultiplier * Time.deltaTime);
 
-        // Send speed to Arduino (assuming speed 0-100)
+        // Send speed to Arduino (assuming speed 0-100) every 100ms
         displaySpeed = Mathf.RoundToInt(Mathf.Abs(currentSpeed) / speed * 100);
         if (SerialCommunicator.Instance != null)
         {
-            SerialCommunicator.Instance.SendSpeed(displaySpeed);
+            // Use a timer to send every 100ms
+            if (sendTimer >= 0.1f)
+            {
+                SerialCommunicator.Instance.SendSpeed(displaySpeed);
+                sendTimer = 0f;
+            }
+            else
+            {
+                sendTimer += Time.deltaTime;
+            }
         }
     }
+
+    private float sendTimer = 0f;
 }
