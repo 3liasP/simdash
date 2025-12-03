@@ -65,16 +65,14 @@
     \item Driver training and education
     \item Behavioral analysis in psychology
     \item Medical research (stress response)
-    \item Autonomous vehicle development
-    \item Gaming and entertainment
+    \item For fun!
 \end{tlist}
 
 \column{0.5\textwidth}
 \textbf{Our Focus:}
 \begin{tlist}
-    \item Realistic environmental simulation
+    \item Semi-realistic environmental simulation
     \item Tangible feedback systems
-    \item Foundation for advanced research
     \item Accessible prototyping approach
 \end{tlist}
 \end{columns}
@@ -162,7 +160,6 @@
     \item Audio feedback (engine, rain sounds)
     \item Urban environment (POLYGON city pack)
     \item Random scenarios (e.g., animals crossing)
-    \item Day/night lighting
 \end{tlist}
 \end{columns}
 
@@ -180,7 +177,7 @@
 \begin{enumerate}
     \item \textbf{Real-time Speed Display}
     \begin{tlist}
-        \item Speed from Unity transmitted via serial (9600 baud)
+        \item Speed from Unity transmitted via serial
         \item Arduino parses and displays on 7-segment display
         \item Updates dynamically as car accelerates/decelerates
     \end{tlist}
@@ -188,7 +185,7 @@
     \item \textbf{Wind Flow Simulation}
     \begin{tlist}
         \item Fan speed synchronized with car speed
-        \item Provides tactile feedback to driver
+        \item Provides haptic feedback to driver
         \item Enhances immersion in virtual environment
     \end{tlist}
     
@@ -199,25 +196,6 @@
         \item Weather effects impact visual experience
     \end{tlist}
 \end{enumerate}
-\end{frame}
-
-\begin{frame}{Design Rationale}
-\textbf{Why these features?}
-
-\begin{tlist}
-    \item \alert{7-Segment Display:} Simple, reliable, real-world instrument panel feel
-    \item \alert{Fan Motor:} Cost-effective haptic feedback, easy to implement
-    \item \alert{Unity Physics:} Realistic simulation without complex custom code
-    \item \alert{Weather Effects:} Demonstrates environmental variable handling
-    \item \alert{Serial Communication:} Industry-standard protocol, well-documented
-\end{tlist}
-
-\vspace{0.5cm}
-\textbf{Core Concept Illustration:}
-\begin{center}
-Virtual actions produce \alert{tangible, real-world responses}\\
-Creating a \alert{closed feedback loop} between digital and physical realms
-\end{center}
 \end{frame}
 
 %--------------------
@@ -254,7 +232,7 @@ Creating a \alert{closed feedback loop} between digital and physical realms
     \item ECG helmet integration
     \begin{tlist}
         \item Complex implementation
-        \item Limited availability
+        \item Not available for student use
         \item Scope too large
     \end{tlist}
     \item Automatic stress-based control
@@ -275,30 +253,6 @@ Creating a \alert{closed feedback loop} between digital and physical realms
 \vspace{0.5cm}
 \centering
 \textbf{Result:} More focused, achievable prototype that still demonstrates core concepts
-\end{frame}
-
-\begin{frame}{Final Deliverable Alignment}
-\begin{center}
-\begin{tabular}{|l|c|c|}
-\hline
-\textbf{Feature} & \textbf{Proposed} & \textbf{Delivered} \\
-\hline
-Steering wheel control & \checkmark & \checkmark \\
-Speed display (7-segment) & \checkmark & \checkmark \\
-Fan motor (wind simulation) & \checkmark & \checkmark \\
-Unity 3D environment & \checkmark & \checkmark \\
-Weather simulation & \checkmark & \checkmark \\
-Physics engine & \checkmark & \checkmark \\
-Random scenarios & \checkmark & \checkmark \\
-Audio feedback & \checkmark & \checkmark \\
-Heart rate sensor & \checkmark & \texttimes \\
-ECG integration & \checkmark & \texttimes \\
-\hline
-\end{tabular}
-\end{center}
-
-\vspace{0.3cm}
-\textbf{Completion Rate:} 80\% of proposed original features, with quality improvements
 \end{frame}
 
 %--------------------
@@ -364,24 +318,6 @@ ECG integration & \checkmark & \texttimes \\
         \item Standalone test mode development
     \end{tlist}
 \end{enumerate}
-\end{frame}
-
-\begin{frame}{System Integration}
-\textbf{Challenges \& Solutions:}
-
-\begin{tlist}
-    \item \textbf{Power Management}
-    \begin{tlist}
-        \item Challenge: Motor current draw
-        \item Solution: Transistor-based switching circuit
-    \end{tlist}
-    
-    \item \textbf{Display Limitations}
-    \begin{tlist}
-        \item Challenge: 4-digit display, but pin 13 needed for motor
-        \item Solution: Use only 3 digits (sufficient for speed 0-100)
-    \end{tlist}
-\end{tlist}
 \end{frame}
 
 \begin{frame}{Project Management}
@@ -458,25 +394,6 @@ ECG integration & \checkmark & \texttimes \\
 \end{enumerate}
 \end{frame}
 
-\begin{frame}{Deliverable Outcomes \& Improvements}
-\textbf{What Went Well:}
-\begin{tlist}
-    \item Early milestone setting provided direction
-    \item GitHub workflow enabled parallel development
-    \item Flexibility to adjust scope when needed
-    \item Final product matches refined vision
-\end{tlist}
-
-\vspace{0.3cm}
-\textbf{Possible Improvements:}
-\begin{tlist}
-    \item \alert{Task Division:} More explicit role assignments from the start
-    \item \alert{Communication:} Regular sync meetings beyond class time
-    \item \alert{Hardware Planning:} Earlier component ordering and verification
-    \item \alert{Scheduling:} Better coordination for in-person hardware work
-\end{tlist}
-\end{frame}
-
 %--------------------
 % Lessons Learned
 %--------------------
@@ -496,7 +413,6 @@ ECG integration & \checkmark & \texttimes \\
 \textbf{Individual Reflections:}
 \begin{tlist}
     \item Initial learning curve was steep for less experienced members
-    \item Step-by-step approach helped build confidence
     \item Cross-learning between team members valuable
     \item Hands-on experience more effective than theoretical study
 \end{tlist}
@@ -507,7 +423,6 @@ ECG integration & \checkmark & \texttimes \\
 \begin{tlist}
     \item Freedom to choose tasks based on interest/skill
     \item Early tool adoption (GitHub, Miro)
-    \item Willingness to help each other learn
     \item Flexibility in adjusting scope
 \end{tlist}
 
@@ -516,7 +431,6 @@ ECG integration & \checkmark & \texttimes \\
 \begin{tlist}
     \item \alert{Unclear task division} led to some confusion
     \item \alert{Limited prior experience} with technologies as a team
-    \item \alert{Busy schedules} restricted meeting opportunities
     \item \alert{Merge conflicts} from uncoordinated parallel work
 \end{tlist}
 \end{frame}
@@ -525,11 +439,9 @@ ECG integration & \checkmark & \texttimes \\
 \textbf{Key Lessons:}
 
 \begin{tlist}
-    \item \alert{Scope Management:} Start smaller, iterate larger
     \item \alert{Hardware Risks:} Component availability is important from the start
-    \item \alert{Agile Balance:} "Move fast" doesn't mean "skip docs/planning"
     \item \alert{Integration Early:} Test hardware-software connection ASAP
-    \item \alert{Parallel Work:} Requires excellent coordination to avoid conflicts
+    \item \alert{Parallel Work:} Not so simple with Unity Scenes to avoid conflicts
     \item \alert{Flexibility:} Be ready to pivot when obstacles arise
 \end{tlist}
 
