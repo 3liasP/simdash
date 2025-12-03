@@ -1,0 +1,558 @@
+% !TEX program = pdflatex
+\documentclass[aspectratio=169]{beamer}
+\usetheme{metropolis}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{qrcode}
+\hypersetup{colorlinks=true, urlcolor=blue, linkcolor=blue, citecolor=blue}
+
+% Custom colors
+\definecolor{MainPurple}{HTML}{4E008E}
+\definecolor{SecondaryBlack}{HTML}{000000}
+\definecolor{SecondaryWhite}{HTML}{FFFFFF}
+
+% Metropolis color overrides
+\setbeamercolor{palette primary}{bg=MainPurple, fg=SecondaryWhite}
+\setbeamercolor{palette secondary}{bg=SecondaryBlack, fg=SecondaryWhite}
+\setbeamercolor{palette tertiary}{bg=MainPurple, fg=SecondaryWhite}
+\setbeamercolor{palette quaternary}{bg=SecondaryBlack, fg=SecondaryWhite}
+\setbeamercolor{frametitle}{bg=MainPurple, fg=SecondaryWhite}
+\setbeamercolor{background canvas}{bg=SecondaryWhite}
+\setbeamercolor{normal text}{fg=SecondaryBlack, bg=SecondaryWhite}
+\setbeamercolor{alerted text}{fg=MainPurple}
+
+%--------------------
+% Metadata
+%--------------------
+\title{SimDash: Unity Arduino Car Simulator}
+\subtitle{HTI.320 Group 7 Final Presentation}
+\author{Donya Davoodi, Jere Kivikangas, Elias Peltonen,\\Faezeh Sayad Sijani, Prajjwol Tripathi}
+\institute{Tampere University}
+\date{December 4, 2024}
+
+% Helpful macros for compact lists
+\newenvironment{tlist}{\begin{itemize}}{\end{itemize}}
+
+\begin{document}
+
+\maketitle
+
+%--------------------
+% Introduction
+%--------------------
+\section{Introduction}
+
+\begin{frame}{What is SimDash?}
+\begin{tlist}
+    \item Interactive driving simulator combining \alert{hardware} and \alert{software}
+    \item Real-time feedback through physical components
+    \item Unity-based 3D environment with realistic physics
+    \item Arduino-controlled peripherals for immersive experience
+\end{tlist}
+
+\vspace{0.5cm}
+\textbf{Core Concept:} Bridge the gap between virtual simulation and tangible interaction
+\end{frame}
+
+\begin{frame}{Why Driving Simulation?}
+\begin{columns}[T]
+\column{0.5\textwidth}
+\textbf{Applications:}
+\begin{tlist}
+    \item Driver training and education
+    \item Behavioral analysis in psychology
+    \item Medical research (stress response)
+    \item Autonomous vehicle development
+    \item Gaming and entertainment
+\end{tlist}
+
+\column{0.5\textwidth}
+\textbf{Our Focus:}
+\begin{tlist}
+    \item Realistic environmental simulation
+    \item Tangible feedback systems
+    \item Foundation for advanced research
+    \item Accessible prototyping approach
+\end{tlist}
+\end{columns}
+\end{frame}
+
+%--------------------
+% System Overview
+%--------------------
+\section{Complete Interaction System}
+
+\begin{frame}{System Architecture}
+\begin{columns}[T]
+\column{0.5\textwidth}
+\textbf{Software (Unity):}
+\begin{tlist}
+    \item 3D driving environment
+    \item Realistic physics engine
+    \item Weather simulation (rain)
+    \item Random event scenarios
+    \item Serial communication interface
+    \item Speed monitoring \& warnings
+\end{tlist}
+
+\column{0.5\textwidth}
+\textbf{Hardware (Arduino):}
+\begin{tlist}
+    \item Arduino Uno microcontroller
+    \item 3-digit 7-segment display (5641AS)
+    \item 5V fan motor with PWM control
+    \item Steering wheel input device
+    \item USB serial connection
+\end{tlist}
+\end{columns}
+
+\vspace{0.3cm}
+\centering
+\alert{Bidirectional data flow: Unity $\leftrightarrow$ Serial $\leftrightarrow$ Arduino}
+\end{frame}
+
+\begin{frame}{Hardware Components}
+\begin{columns}[T]
+\column{0.6\textwidth}
+\textbf{7-Segment Display (5641AS):}
+\begin{tlist}
+    \item Displays speed (0-100)
+    \item 3-digit common cathode configuration
+    \item Segment pins: 9, 2, 3, 5, 6, 8, 7, 4
+    \item Digit control: pins 10, 11, 12
+    \item Uses SevSeg library for multiplexing
+\end{tlist}
+
+\textbf{Fan Motor:}
+\begin{tlist}
+    \item 5V DC motor
+    \item PWM control via pin 13
+    \item Speed mapped from game (0-100 → 0-255 PWM)
+    \item Simulates wind flow during driving
+\end{tlist}
+
+\column{0.4\textwidth}
+\begin{center}
+\textbf{Circuit Diagram}\\
+\vspace{0.3cm}
+\includegraphics[width=\textwidth]{../Circuit/simdash.png}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Software Features}
+\begin{columns}[T]
+\column{0.5\textwidth}
+\textbf{Core Functionality:}
+\begin{tlist}
+    \item Steering wheel control integration
+    \item Realistic car physics (friction, collision)
+    \item Dynamic camera positioning
+    \item Real-time speed calculation
+    \item High-speed warning system
+\end{tlist}
+
+\column{0.5\textwidth}
+\textbf{Environmental Features:}
+\begin{tlist}
+    \item Weather effects (rain simulation)
+    \item Audio feedback (engine, rain sounds)
+    \item Urban environment (POLYGON city pack)
+    \item Random scenarios (e.g., animals crossing)
+    \item Day/night lighting
+\end{tlist}
+\end{columns}
+
+\vspace{0.5cm}
+\centering
+\textbf{Technology Stack:} Unity 6.2, C\#, Arduino IDE, SevSeg library
+\end{frame}
+
+%--------------------
+% Demo Features
+%--------------------
+\section{Prototype Demo}
+
+\begin{frame}{Key Demo Features}
+\begin{enumerate}
+    \item \textbf{Real-time Speed Display}
+    \begin{tlist}
+        \item Speed from Unity transmitted via serial (9600 baud)
+        \item Arduino parses and displays on 7-segment display
+        \item Updates dynamically as car accelerates/decelerates
+    \end{tlist}
+    
+    \item \textbf{Wind Flow Simulation}
+    \begin{tlist}
+        \item Fan speed synchronized with car speed
+        \item Provides tactile feedback to driver
+        \item Enhances immersion in virtual environment
+    \end{tlist}
+    
+    \item \textbf{Interactive Driving Environment}
+    \begin{tlist}
+        \item Steering wheel controls car direction
+        \item Physics-based movement and collision
+        \item Weather effects impact visual experience
+    \end{tlist}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Design Rationale}
+\textbf{Why these features?}
+
+\begin{tlist}
+    \item \alert{7-Segment Display:} Simple, reliable, real-world instrument panel feel
+    \item \alert{Fan Motor:} Cost-effective haptic feedback, easy to implement
+    \item \alert{Unity Physics:} Realistic simulation without complex custom code
+    \item \alert{Weather Effects:} Demonstrates environmental variable handling
+    \item \alert{Serial Communication:} Industry-standard protocol, well-documented
+\end{tlist}
+
+\vspace{0.5cm}
+\textbf{Core Concept Illustration:}
+\begin{center}
+Virtual actions produce \alert{tangible, real-world responses}\\
+Creating a \alert{closed feedback loop} between digital and physical realms
+\end{center}
+\end{frame}
+
+%--------------------
+% Specification Comparison
+%--------------------
+\section{Proposal vs. Final Product}
+
+\begin{frame}{Original Vision}
+\textbf{Initial Proposal Included:}
+\begin{tlist}
+    \item Heart rate sensor for stress monitoring
+    \item ECG helmet for brain signal analysis
+    \item Automatic speed control based on driver stress
+    \item Behavioral analysis during driving
+    \item Medical/psychological research applications
+\end{tlist}
+
+\vspace{0.3cm}
+\begin{center}
+\alert{Ambitious scope for rapid prototyping timeline}
+\end{center}
+\end{frame}
+
+\begin{frame}{What Changed?}
+\begin{columns}[T]
+\column{0.5\textwidth}
+\textbf{Removed Features:}
+\begin{tlist}
+    \item Heart rate sensor
+    \begin{tlist}
+        \item Delayed delivery
+        \item Time constraints
+    \end{tlist}
+    \item ECG helmet integration
+    \begin{tlist}
+        \item Complex implementation
+        \item Limited availability
+        \item Scope too large
+    \end{tlist}
+    \item Automatic stress-based control
+\end{tlist}
+
+\column{0.5\textwidth}
+\textbf{Enhanced Instead:}
+\begin{tlist}
+    \item Polished driving environment
+    \item Improved weather effects
+    \item Better audio integration
+    \item More stable hardware setup
+    \item Refined physics simulation
+    \item Random scenario system
+\end{tlist}
+\end{columns}
+
+\vspace{0.5cm}
+\centering
+\textbf{Result:} More focused, achievable prototype that still demonstrates core concepts
+\end{frame}
+
+\begin{frame}{Final Deliverable Alignment}
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Feature} & \textbf{Proposed} & \textbf{Delivered} \\
+\hline
+Steering wheel control & \checkmark & \checkmark \\
+Speed display (7-segment) & \checkmark & \checkmark \\
+Fan motor (wind simulation) & \checkmark & \checkmark \\
+Unity 3D environment & \checkmark & \checkmark \\
+Weather simulation & \checkmark & \checkmark \\
+Physics engine & \checkmark & \checkmark \\
+Random scenarios & \checkmark & \checkmark \\
+Audio feedback & \checkmark & \checkmark \\
+Heart rate sensor & \checkmark & \texttimes \\
+ECG integration & \checkmark & \texttimes \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.3cm}
+\textbf{Completion Rate:} 80\% of proposed original features, with quality improvements
+\end{frame}
+
+%--------------------
+% Development Stages
+%--------------------
+\section{Development Process}
+
+\begin{frame}{Software Development (Unity)}
+\begin{enumerate}
+    \item \textbf{Environment Design}
+    \begin{tlist}
+        \item 3D scene creation with POLYGON city pack
+        \item Camera positioning and lighting setup
+    \end{tlist}
+    
+    \item \textbf{Physics Implementation}
+    \begin{tlist}
+        \item Rigidbody dynamics for car movement
+        \item Acceleration and collision detection
+        \item Simple steering wheel input mapping
+    \end{tlist}
+    
+    \item \textbf{Serial Communication}
+    \begin{tlist}
+        \item Data formatting and transmission protocols
+        \item Error handling and connection management
+    \end{tlist}
+    
+    \item \textbf{Feature Integration}
+    \begin{tlist}
+        \item Weather systems, audio, warnings
+        \item Testing and synchronization with hardware
+    \end{tlist}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Hardware Development (Arduino)}
+\begin{enumerate}
+    \item \textbf{Component Testing}
+    \begin{tlist}
+        \item Individual testing of display and motor
+        \item Pin configuration validation
+        \item Power requirements verification
+    \end{tlist}
+    
+    \item \textbf{Display Integration}
+    \begin{tlist}
+        \item SevSeg library configuration
+        \item 3-digit multiplexing setup
+        \item Brightness and refresh rate optimization
+    \end{tlist}
+    
+    \item \textbf{Motor Control}
+    \begin{tlist}
+        \item PWM signal generation
+        \item Speed mapping algorithm (0-100 → 0-255)
+        \item Transistor circuit for current handling
+    \end{tlist}
+    
+    \item \textbf{Serial Protocol}
+    \begin{tlist}
+        \item Data parsing from Unity
+        \item Standalone test mode development
+    \end{tlist}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{System Integration}
+\textbf{Challenges \& Solutions:}
+
+\begin{tlist}
+    \item \textbf{Power Management}
+    \begin{tlist}
+        \item Challenge: Motor current draw
+        \item Solution: Transistor-based switching circuit
+    \end{tlist}
+    
+    \item \textbf{Display Limitations}
+    \begin{tlist}
+        \item Challenge: 4-digit display, but pin 13 needed for motor
+        \item Solution: Use only 3 digits (sufficient for speed 0-100)
+    \end{tlist}
+\end{tlist}
+\end{frame}
+
+\begin{frame}{Project Management}
+\textbf{Tools \& Workflow:}
+\begin{columns}[T]
+\column{0.5\textwidth}
+\begin{tlist}
+    \item \textbf{GitHub Repository}
+    \begin{tlist}
+        \item Version control for code
+        \item Branch-based development
+        \item Main branch stability
+        \item Merge reviews
+    \end{tlist}
+    
+    \item \textbf{Miro Board}
+    \begin{tlist}
+        \item Visual planning
+        \item Task tracking
+        \item Milestone setting
+    \end{tlist}
+\end{tlist}
+
+\column{0.5\textwidth}
+\begin{tlist}
+    \item \textbf{Documentation}
+    \begin{tlist}
+        \item README.md (setup guide)
+        \item Circuit diagrams
+        \item Code comments
+        \item Final report
+    \end{tlist}
+    
+    \item \textbf{Testing Approach}
+    \begin{tlist}
+        \item Standalone Arduino tests
+        \item Unity scene testing
+        \item Integrated system validation
+    \end{tlist}
+\end{tlist}
+\end{columns}
+
+\vspace{0.3cm}
+\textbf{Repository:} \url{https://github.com/3liasP/simdash}
+\end{frame}
+
+%--------------------
+% Deliverables Reflection
+%--------------------
+\section{Deliverables \& Outcomes}
+
+\begin{frame}{Three Deliverables Overview}
+\begin{enumerate}
+    \item \textbf{Initial Proposal \& Planning}
+    \begin{tlist}
+        \item Set ambitious vision with heart rate/ECG
+        \item Established clear milestones
+        \item Created Miro board for collaboration
+    \end{tlist}
+    
+    \item \textbf{Midterm Progress Report}
+    \begin{tlist}
+        \item Hardware sourcing challenges identified
+        \item Scope refinement decisions made
+        \item Core functionality demonstrated
+    \end{tlist}
+    
+    \item \textbf{Final Prototype \& Report}
+    \begin{tlist}
+        \item Working hardware-software integration
+        \item Polished driving experience
+        \item Complete documentation
+    \end{tlist}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Deliverable Outcomes \& Improvements}
+\textbf{What Went Well:}
+\begin{tlist}
+    \item Early milestone setting provided direction
+    \item GitHub workflow enabled parallel development
+    \item Flexibility to adjust scope when needed
+    \item Final product matches refined vision
+\end{tlist}
+
+\vspace{0.3cm}
+\textbf{Possible Improvements:}
+\begin{tlist}
+    \item \alert{Task Division:} More explicit role assignments from the start
+    \item \alert{Communication:} Regular sync meetings beyond class time
+    \item \alert{Hardware Planning:} Earlier component ordering and verification
+    \item \alert{Scheduling:} Better coordination for in-person hardware work
+\end{tlist}
+\end{frame}
+
+%--------------------
+% Lessons Learned
+%--------------------
+\section{Lessons Learned}
+
+\begin{frame}{Team Insights: Technical}
+\textbf{Key Technical Learnings:}
+\begin{tlist}
+    \item \alert{Unity Basics:} Several members learned Unity from scratch
+    \item \alert{GitHub Proficiency:} Version control skills developed across team
+    \item \alert{Serial Communication:} Understanding of hardware-software protocols
+    \item \alert{Arduino Programming:} Microcontroller development experience
+    \item \alert{Circuit Design:} Practical electronics knowledge gained
+\end{tlist}
+
+\vspace{0.5cm}
+\textbf{Individual Reflections:}
+\begin{tlist}
+    \item Initial learning curve was steep for less experienced members
+    \item Step-by-step approach helped build confidence
+    \item Cross-learning between team members valuable
+    \item Hands-on experience more effective than theoretical study
+\end{tlist}
+\end{frame}
+
+\begin{frame}{Team Insights: Process}
+\textbf{What Worked:}
+\begin{tlist}
+    \item Freedom to choose tasks based on interest/skill
+    \item Early tool adoption (GitHub, Miro)
+    \item Willingness to help each other learn
+    \item Flexibility in adjusting scope
+\end{tlist}
+
+\vspace{0.3cm}
+\textbf{Challenges Faced:}
+\begin{tlist}
+    \item \alert{Unclear task division} led to some confusion
+    \item \alert{Limited prior experience} with technologies as a team
+    \item \alert{Busy schedules} restricted meeting opportunities
+    \item \alert{Merge conflicts} from uncoordinated parallel work
+\end{tlist}
+\end{frame}
+
+\begin{frame}{Rapid Prototyping Insights}
+\textbf{Key Lessons:}
+
+\begin{tlist}
+    \item \alert{Scope Management:} Start smaller, iterate larger
+    \item \alert{Hardware Risks:} Component availability is important from the start
+    \item \alert{Agile Balance:} "Move fast" doesn't mean "skip docs/planning"
+    \item \alert{Integration Early:} Test hardware-software connection ASAP
+    \item \alert{Parallel Work:} Requires excellent coordination to avoid conflicts
+    \item \alert{Flexibility:} Be ready to pivot when obstacles arise
+\end{tlist}
+
+\vspace{0.5cm}
+\begin{center}
+\textbf{Despite challenges, we delivered a functional prototype\\
+that demonstrates our core concept successfully!}
+\end{center}
+\end{frame}
+
+\begin{frame}[standout]
+Thank You!
+\vspace{1cm}
+
+\textbf{Questions?}
+
+\vspace{1cm}
+{\small
+\begin{tabular}{c@{\hspace{4cm}}c}
+\textbf{Repository:} & \textbf{Miro Board:} \\
+\textcolor{SecondaryWhite}{\qrcode[nolinks]{https://github.com/3liasP/simdash}} & \textcolor{SecondaryWhite}{\qrcode[nolinks]{https://miro.com/app/board/uXjVJs10bzI=/}} \\
+\end{tabular}
+}
+\end{frame}
+
+\end{document}

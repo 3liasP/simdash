@@ -2,6 +2,12 @@
 
 This project connects a Unity car game with Arduino Uno to display speed on a 3-digit 7-segment display and control a fan motor.
 
+## Final Report
+
+Final report available at: [Documentation/final-report.md](Documentation/final-report.md)
+
+Final presentation slides available at: [Documentation/presentation.pdf](Documentation/presentation.pdf)
+
 ## Project Deliverables
 - Refer to Miro Board: https://miro.com/app/board/uXjVJs10bzI=/
 
