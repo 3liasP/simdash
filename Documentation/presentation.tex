@@ -31,7 +31,7 @@
 \subtitle{HTI.320 Group 7 Final Presentation}
 \author{Donya Davoodi, Jere Kivikangas, Elias Peltonen,\\Faezeh Sayad Sijani, Prajjwol Tripathi}
 \institute{Tampere University}
-\date{December 4, 2024}
+\date{December 4, 2025}
 
 % Helpful macros for compact lists
 \newenvironment{tlist}{\begin{itemize}}{\end{itemize}}
@@ -57,31 +57,7 @@
 \textbf{Core Concept:} Bridge the gap between virtual simulation and tangible interaction
 \end{frame}
 
-\begin{frame}{Why Driving Simulation?}
-\begin{columns}[T]
-\column{0.5\textwidth}
-\textbf{Applications:}
-\begin{tlist}
-    \item Driver training and education
-    \item Behavioral analysis in psychology
-    \item Medical research (stress response)
-    \item For fun!
-\end{tlist}
-
-\column{0.5\textwidth}
-\textbf{Our Focus:}
-\begin{tlist}
-    \item Semi-realistic environmental simulation
-    \item Tangible feedback systems
-    \item Accessible prototyping approach
-\end{tlist}
-\end{columns}
-\end{frame}
-
-%--------------------
-% System Overview
-%--------------------
-\section{Complete Interaction System}
+\section{Team Roles \& Responsibilities}
 
 \begin{frame}{System Architecture}
 \begin{columns}[T]
@@ -112,62 +88,6 @@
 \alert{Bidirectional data flow: Unity $\leftrightarrow$ Serial $\leftrightarrow$ Arduino}
 \end{frame}
 
-\begin{frame}{Hardware Components}
-\begin{columns}[T]
-\column{0.6\textwidth}
-\textbf{7-Segment Display (5641AS):}
-\begin{tlist}
-    \item Displays speed (0-100)
-    \item 3-digit common cathode configuration
-    \item Segment pins: 9, 2, 3, 5, 6, 8, 7, 4
-    \item Digit control: pins 10, 11, 12
-    \item Uses SevSeg library for multiplexing
-\end{tlist}
-
-\textbf{Fan Motor:}
-\begin{tlist}
-    \item 5V DC motor
-    \item PWM control via pin 13
-    \item Speed mapped from game (0-100 → 0-255 PWM)
-    \item Simulates wind flow during driving
-\end{tlist}
-
-\column{0.4\textwidth}
-\begin{center}
-\textbf{Circuit Diagram}\\
-\vspace{0.3cm}
-\includegraphics[width=\textwidth]{../Circuit/simdash.png}
-\end{center}
-\end{columns}
-\end{frame}
-
-\begin{frame}{Software Features}
-\begin{columns}[T]
-\column{0.5\textwidth}
-\textbf{Core Functionality:}
-\begin{tlist}
-    \item Steering wheel control integration
-    \item Realistic car physics (friction, collision)
-    \item Dynamic camera positioning
-    \item Real-time speed calculation
-    \item High-speed warning system
-\end{tlist}
-
-\column{0.5\textwidth}
-\textbf{Environmental Features:}
-\begin{tlist}
-    \item Weather effects (rain simulation)
-    \item Audio feedback (engine, rain sounds)
-    \item Urban environment (POLYGON city pack)
-    \item Random scenarios (e.g., animals crossing)
-\end{tlist}
-\end{columns}
-
-\vspace{0.5cm}
-\centering
-\textbf{Technology Stack:} Unity 6.2, C\#, Arduino IDE, SevSeg library
-\end{frame}
-
 %--------------------
 % Demo Features
 %--------------------
@@ -185,14 +105,13 @@
     \item \textbf{Wind Flow Simulation}
     \begin{tlist}
         \item Fan speed synchronized with car speed
-        \item Provides haptic feedback to driver
-        \item Enhances immersion in virtual environment
+        \item Adds immersion in virtual environment
     \end{tlist}
     
     \item \textbf{Interactive Driving Environment}
     \begin{tlist}
-        \item Steering wheel controls car direction
-        \item Physics-based movement and collision
+        \item Steering wheel and pedals
+        \item Simple physics-based movement and collision
         \item Weather effects impact visual experience
     \end{tlist}
 \end{enumerate}
@@ -203,26 +122,10 @@
 %--------------------
 \section{Proposal vs. Final Product}
 
-\begin{frame}{Original Vision}
-\textbf{Initial Proposal Included:}
-\begin{tlist}
-    \item Heart rate sensor for stress monitoring
-    \item ECG helmet for brain signal analysis
-    \item Automatic speed control based on driver stress
-    \item Behavioral analysis during driving
-    \item Medical/psychological research applications
-\end{tlist}
-
-\vspace{0.3cm}
-\begin{center}
-\alert{Ambitious scope for rapid prototyping timeline}
-\end{center}
-\end{frame}
-
 \begin{frame}{What Changed?}
 \begin{columns}[T]
 \column{0.5\textwidth}
-\textbf{Removed Features:}
+\textbf{Removed Proposed Features:}
 \begin{tlist}
     \item Heart rate sensor
     \begin{tlist}
@@ -259,66 +162,6 @@
 % Development Stages
 %--------------------
 \section{Development Process}
-
-\begin{frame}{Software Development (Unity)}
-\begin{enumerate}
-    \item \textbf{Environment Design}
-    \begin{tlist}
-        \item 3D scene creation with POLYGON city pack
-        \item Camera positioning and lighting setup
-    \end{tlist}
-    
-    \item \textbf{Physics Implementation}
-    \begin{tlist}
-        \item Rigidbody dynamics for car movement
-        \item Acceleration and collision detection
-        \item Simple steering wheel input mapping
-    \end{tlist}
-    
-    \item \textbf{Serial Communication}
-    \begin{tlist}
-        \item Data formatting and transmission protocols
-        \item Error handling and connection management
-    \end{tlist}
-    
-    \item \textbf{Feature Integration}
-    \begin{tlist}
-        \item Weather systems, audio, warnings
-        \item Testing and synchronization with hardware
-    \end{tlist}
-\end{enumerate}
-\end{frame}
-
-\begin{frame}{Hardware Development (Arduino)}
-\begin{enumerate}
-    \item \textbf{Component Testing}
-    \begin{tlist}
-        \item Individual testing of display and motor
-        \item Pin configuration validation
-        \item Power requirements verification
-    \end{tlist}
-    
-    \item \textbf{Display Integration}
-    \begin{tlist}
-        \item SevSeg library configuration
-        \item 3-digit multiplexing setup
-        \item Brightness and refresh rate optimization
-    \end{tlist}
-    
-    \item \textbf{Motor Control}
-    \begin{tlist}
-        \item PWM signal generation
-        \item Speed mapping algorithm (0-100 → 0-255)
-        \item Transistor circuit for current handling
-    \end{tlist}
-    
-    \item \textbf{Serial Protocol}
-    \begin{tlist}
-        \item Data parsing from Unity
-        \item Standalone test mode development
-    \end{tlist}
-\end{enumerate}
-\end{frame}
 
 \begin{frame}{Project Management}
 \textbf{Tools \& Workflow:}
@@ -365,75 +208,9 @@
 \end{frame}
 
 %--------------------
-% Deliverables Reflection
-%--------------------
-\section{Deliverables \& Outcomes}
-
-\begin{frame}{Three Deliverables Overview}
-\begin{enumerate}
-    \item \textbf{Initial Proposal \& Planning}
-    \begin{tlist}
-        \item Set ambitious vision with heart rate/ECG
-        \item Established clear milestones
-        \item Created Miro board for collaboration
-    \end{tlist}
-    
-    \item \textbf{Midterm Progress Report}
-    \begin{tlist}
-        \item Hardware sourcing challenges identified
-        \item Scope refinement decisions made
-        \item Core functionality demonstrated
-    \end{tlist}
-    
-    \item \textbf{Final Prototype \& Report}
-    \begin{tlist}
-        \item Working hardware-software integration
-        \item Polished driving experience
-        \item Complete documentation
-    \end{tlist}
-\end{enumerate}
-\end{frame}
-
-%--------------------
 % Lessons Learned
 %--------------------
 \section{Lessons Learned}
-
-\begin{frame}{Team Insights: Technical}
-\textbf{Key Technical Learnings:}
-\begin{tlist}
-    \item \alert{Unity Basics:} Several members learned Unity from scratch
-    \item \alert{GitHub Proficiency:} Version control skills developed across team
-    \item \alert{Serial Communication:} Understanding of hardware-software protocols
-    \item \alert{Arduino Programming:} Microcontroller development experience
-    \item \alert{Circuit Design:} Practical electronics knowledge gained
-\end{tlist}
-
-\vspace{0.5cm}
-\textbf{Individual Reflections:}
-\begin{tlist}
-    \item Initial learning curve was steep for less experienced members
-    \item Cross-learning between team members valuable
-    \item Hands-on experience more effective than theoretical study
-\end{tlist}
-\end{frame}
-
-\begin{frame}{Team Insights: Process}
-\textbf{What Worked:}
-\begin{tlist}
-    \item Freedom to choose tasks based on interest/skill
-    \item Early tool adoption (GitHub, Miro)
-    \item Flexibility in adjusting scope
-\end{tlist}
-
-\vspace{0.3cm}
-\textbf{Challenges Faced:}
-\begin{tlist}
-    \item \alert{Unclear task division} led to some confusion
-    \item \alert{Limited prior experience} with technologies as a team
-    \item \alert{Merge conflicts} from uncoordinated parallel work
-\end{tlist}
-\end{frame}
 
 \begin{frame}{Rapid Prototyping Insights}
 \textbf{Key Lessons:}
